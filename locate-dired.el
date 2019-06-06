@@ -136,7 +136,7 @@
   (let* ((dir (file-name-directory database))
 	 (locate-cmd (format "%s --basename --regex --database=%s %s"
 			     locate database pattern))
-	 (xargs-cmd (concat "xargs -r ls " locate-dired-switches))
+	 (xargs-cmd (concat "xargs -d '\n' -r ls " locate-dired-switches))
 	 (sed-cmd (format "sed 's,^\\(.*\\)%s\\(.*\\),  \\1\\2,g'" dir)))
   (mapconcat 'identity (list locate-cmd xargs-cmd sed-cmd) " | ")))
 
