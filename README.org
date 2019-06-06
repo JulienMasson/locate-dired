@@ -1,0 +1,25 @@
+#+TITLE:   Locate Dired
+#+AUTHOR:  Julien Masson
+#+OPTIONS: \n:t
+
+*locate-dired* is an [[https://www.gnu.org/software/emacs/][Emacs]] module which let you execute a ~locate~ command.
+
+The results are displayed in dedicated [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html][Dired]] Buffer.
+
+**** Example Emacs configuration:
+#+begin_src elisp
+(require 'locate-database)
+(define-key dired-mode-map "L" 'locate-dired)
+#+end_src
+
+**** Test it:
+#+begin_src elisp
+M-x locate-dired
+#+end_src
+
+**** *Warning*:
+This module rely on ~locate/updatedb~ from [[https://www.gnu.org/software/findutils/][findutils]].\\
+You must have these following programs installed on your host/remote system:
+- ~updatedb.findutils~
+- ~locate.findutils~
+It won't work if you are using ~mlocate~, the command args are different.
