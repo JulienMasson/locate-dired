@@ -56,6 +56,14 @@
 
 ;;; Internal Functions
 
+(defun locate-dired--prompt-pattern ()
+  "Prompt pattern used when searching in locate database."
+  (let ((pattern (read-string "Locate search: " nil
+			      'locate-dired--search--history)))
+    (if (string= pattern "")
+	(locate-dired--prompt-pattern)
+      pattern)))
+
 (defun locate-dired--untramp-path (path)
   "Return localname of PATH."
   (if (tramp-tramp-file-p path)
@@ -210,8 +218,7 @@
 (defun locate-dired (pattern)
   "Search PATTERN from current `default-directory'.
 If no database is found, we ask to create one and process the request."
-  (interactive (list (read-string "Locate search: " nil
-				  'locate-dired--search--history)))
+  (interactive (list (locate-dired--prompt-pattern)))
   (let* ((database (concat default-directory locate-dired--database))
 	 (prompt (format "Create locate database (%s): "
 			 (propertize database 'face 'success))))
