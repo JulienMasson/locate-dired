@@ -134,7 +134,7 @@
 (defun locate-dired--locate-args (locate database pattern)
   "Return string of locate command."
   (let* ((dir (file-name-directory database))
-	 (locate-cmd (format "%s --basename --database=%s %s"
+	 (locate-cmd (format "%s --basename --regex --database=%s %s"
 			     locate database pattern))
 	 (xargs-cmd (concat "xargs -r ls " locate-dired-switches))
 	 (sed-cmd (format "sed 's,^\\(.*\\)%s\\(.*\\),  \\1\\2,g'" dir)))
