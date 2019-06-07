@@ -6,6 +6,8 @@
 
 The results are displayed in dedicated [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html][Dired]] Buffer.
 
+If you want to update an existing locate database just press ~g~ or call ~revert-buffer~.
+
 **** Example Emacs configuration:
 #+begin_src elisp
 (require 'locate-database)
