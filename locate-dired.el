@@ -124,6 +124,8 @@
       (insert (format "  %s:\n\n" (file-name-directory database)))
       (add-text-properties (point-min) (point-max) plist)
       (dired-mode default-directory locate-dired-switches)
+      (setq dired-buffers (cl-remove (get-buffer buffer-name) dired-buffers
+				     :key #'cdr :test #'equal))
       (set (make-local-variable 'dired-subdir-alist)
 	   (list (cons default-directory (point-min-marker))))
       (set (make-local-variable 'revert-buffer-function)
